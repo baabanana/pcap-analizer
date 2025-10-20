@@ -1,4 +1,5 @@
-from scapy.all import rdpcap, Packet
+from scapy.utils import rdpcap
+from scapy.packet import Packet
 import csv
 import logging
 import json
@@ -11,6 +12,7 @@ def load_pcap(file_path):
     packets = rdpcap(file_path)
     logging.info(f"Loaded {len(packets)} packets from {file_path}")
     return packets
+
 
 def split_pcap_to_csv(packets, session_id):
     """

@@ -16,6 +16,35 @@ st.set_page_config(page_title=app_title, page_icon="🛡️", layout="wide")
 # 初始化Cookie控制器
 controller = CookieController(key="cookie_controller")
 
+# 移动设备检测
+def is_mobile_device():
+    """检测是否为移动设备"""
+    try:
+        user_agent = st_javascript("""
+            navigator.userAgent;
+        """)
+
+        if user_agent:
+            mobile_keywords = ['Mobile', 'Android', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'IEMobile', 'Opera Mini']
+            return any(keyword in str(user_agent) for keyword in mobile_keywords)
+    except:
+        pass
+    return False
+
+def show_mobile_redirect():
+    """显示移动设备重定向提示"""
+    st.error("📱 检测到您正在使用移动设备")
+    st.markdown("### 🖥️ 为获得最佳体验，请使用桌面电脑访问")
+    st.markdown("**推荐使用：**")
+    st.markdown("- 🖥️ Windows/Mac/Linux 电脑")
+    st.markdown("- 🌐 Chrome、Firefox、Safari 等现代浏览器")
+    st.markdown("---")
+    st.warning("💡 移动设备功能受限，可能影响文件上传和分析功能")
+
+    if st.button("🚀 我了解，继续使用", type="primary"):
+        st.session_state.mobile_acknowledged = True
+        st.rerun()
+
 # Cookie管理功能
 def get_saved_activation_code():
     """从浏览器Cookie获取保存的激活码"""
@@ -193,8 +222,15 @@ if "csv_content" not in st.session_state:
     st.session_state.csv_content = ""
 if "files_uploaded" not in st.session_state:
     st.session_state.files_uploaded = False
+if "mobile_acknowledged" not in st.session_state:
+    st.session_state.mobile_acknowledged = False
 
 def auth_page():
+    # 检查移动设备
+    if not st.session_state.mobile_acknowledged and is_mobile_device():
+        show_mobile_redirect()
+        return
+
     st.title("🛡️ 9137 Super Helper")
 
     # 检查试用状态
@@ -271,6 +307,11 @@ def auth_page():
         st.markdown("🛒 [备用链接](https://m.tb.cn/h.SQaDNQK?tk=W5Rnf2Rra1t)")
 
 def upload_page():
+    # 检查移动设备
+    if not st.session_state.mobile_acknowledged and is_mobile_device():
+        show_mobile_redirect()
+        return
+
     st.title("📁 文件上传")
 
     # 显示当前状态
@@ -393,6 +434,11 @@ def upload_page():
     #     st.rerun()
 
 def chat_page():
+    # 检查移动设备
+    if not st.session_state.mobile_acknowledged and is_mobile_device():
+        show_mobile_redirect()
+        return
+
     if not st.session_state.vector_store_id:
         st.error("❌ 请先上传并处理PCAP文件")
         col1, col2 = st.columns(2)
