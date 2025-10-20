@@ -195,7 +195,7 @@ if "files_uploaded" not in st.session_state:
     st.session_state.files_uploaded = False
 
 def auth_page():
-    st.title("🛡️ PCAP分析助手")
+    st.title("🛡️ 9137 Super Helper")
 
     # 检查试用状态
     trial_status = check_trial_status()
