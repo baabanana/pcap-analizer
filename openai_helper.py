@@ -138,7 +138,7 @@ def chat_with_vector_store(messages, vector_store_id, csv_content=""):
     """
 
     full_messages = [{"role": "system", "content": system_prompt}] + messages
-
+    logging.info(f"完整消息: {full_messages}")
     try:
         response = client.responses.parse(
             model="gpt-5-mini",
@@ -146,10 +146,9 @@ def chat_with_vector_store(messages, vector_store_id, csv_content=""):
                     "type": "file_search",
                     "vector_store_ids": [vector_store_id]
                 }],
-            tool_choice="required",
             input=full_messages,
         )
-
+        logging.info(f"OpenAI响应: {response}")
         return response.output_text
 
     except Exception as e:
