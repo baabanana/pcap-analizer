@@ -1,6 +1,8 @@
-from scapy.all import rdpcap
+from scapy.all import rdpcap, Packet
 import csv
 import logging
+import json
+import math
 
 def load_pcap(file_path):
     """
@@ -106,10 +108,9 @@ def packet_to_dict(pkt):
     
     return packet_dict
 
-def split_pcap_to_json(packets,num_files,session_id):
+def split_pcap_to_json(packets, session_id, num_files=10):
     # 读取数据包
     total_packets = len(packets)
-    num_files = 10
 
     # 计算每个文件应包含的数据包数量
     packets_per_file = math.ceil(total_packets / num_files)
