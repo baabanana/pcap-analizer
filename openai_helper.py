@@ -1,7 +1,23 @@
 import time
+import os
 from openai import OpenAI
 import logging
 import streamlit as st
+
+def get_openai_client():
+    """获取配置好的OpenAI客户端"""
+    # 从secrets获取API密钥
+    api_key = st.secrets.get("openai", {}).get("api_key")
+    if api_key and api_key != "your-openai-api-key-here":
+        return OpenAI(api_key=api_key)
+
+    # 尝试从环境变量获取
+    env_api_key = os.getenv("OPENAI_API_KEY")
+    if env_api_key:
+        return OpenAI(api_key=env_api_key)
+
+    # 如果都没有配置，抛出错误
+    raise ValueError("OpenAI API密钥未配置。请在 .streamlit/secrets.toml 中设置 openai.api_key 或设置 OPENAI_API_KEY 环境变量")
 
 def upload_files_to_vector_store(file_paths, session_id):
     """
@@ -14,12 +30,7 @@ def upload_files_to_vector_store(file_paths, session_id):
     Returns:
         vector_store_id: 创建的vector store ID
     """
-    # 从secrets获取API密钥
-    api_key = st.secrets.get("openai", {}).get("api_key")
-    if api_key:
-        client = OpenAI(api_key=api_key)
-    else:
-        client = OpenAI()  # 使用环境变量
+    client = get_openai_client()
 
     print("=" * 60)
     print("步骤1: 上传文件到 OpenAI")
@@ -132,12 +143,7 @@ def chat_with_vector_store(messages, vector_store_id, csv_content=""):
     Returns:
         AI回复内容
     """
-    # 从secrets获取API密钥
-    api_key = st.secrets.get("openai", {}).get("api_key")
-    if api_key:
-        client = OpenAI(api_key=api_key)
-    else:
-        client = OpenAI()  # 使用环境变量
+    client = get_openai_client()
 
     system_prompt = f"""你是一个网络安全专家，专门分析PCAP数据包。
     你有访问上传到vector store的JSON格式的详细数据包信息。

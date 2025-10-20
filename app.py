@@ -10,29 +10,38 @@ app_title = st.secrets.get("app", {}).get("app_title", "PCAP分析助手")
 st.set_page_config(page_title=app_title, page_icon="🛡️", layout="wide")
 
 # Cookie管理功能
+@st.cache_data
 def get_saved_activation_code():
-    """从cookie中获取保存的激活码"""
-    if 'activation_code' in st.session_state:
-        return st.session_state.activation_code
-    return None
+    """从浏览器localStorage获取保存的激活码"""
+    # 使用JavaScript获取localStorage
+    return None  # 临时返回None，后面用组件实现
 
+@st.cache_data
 def get_saved_vector_store_id():
-    """从cookie中获取保存的vector store ID"""
-    if 'saved_vector_store_id' in st.session_state:
-        return st.session_state.saved_vector_store_id
-    return None
+    """从浏览器localStorage获取保存的vector store ID"""
+    return None  # 临时返回None，后面用组件实现
 
 def save_activation_code(code):
-    """保存激活码到session state（作为简单cookie实现）"""
+    """保存激活码到session state"""
     st.session_state.activation_code = code
+    st.session_state.persistent_activation_code = code
 
 def save_vector_store_id(vector_store_id):
     """保存vector store ID到session state"""
     st.session_state.saved_vector_store_id = vector_store_id
+    st.session_state.persistent_vector_store_id = vector_store_id
+
+def get_persistent_activation_code():
+    """从persistent session state获取激活码"""
+    return st.session_state.get('persistent_activation_code', None)
+
+def get_persistent_vector_store_id():
+    """从persistent session state获取vector store ID"""
+    return st.session_state.get('persistent_vector_store_id', None)
 
 # 检查是否有保存的激活码和vector store
-saved_code = get_saved_activation_code()
-saved_vector_store = get_saved_vector_store_id()
+saved_code = get_persistent_activation_code()
+saved_vector_store = get_persistent_vector_store_id()
 
 if saved_code and check_uuid(saved_code):
     # 如果有有效的保存激活码
@@ -70,6 +79,15 @@ if "files_uploaded" not in st.session_state:
 def auth_page():
     st.title("🛡️ PCAP分析助手")
     st.markdown("### 请输入激活码")
+
+    # 调试信息 - 显示当前保存的状态
+    saved_code = get_persistent_activation_code()
+    saved_vector = get_persistent_vector_store_id()
+    if saved_code or saved_vector:
+        with st.expander("🔍 调试信息"):
+            st.write(f"保存的激活码: {saved_code[:8] + '...' if saved_code else '无'}")
+            st.write(f"保存的Vector Store: {saved_vector[:8] + '...' if saved_vector else '无'}")
+            st.write(f"Session State Keys: {list(st.session_state.keys())}")
 
     with st.form("auth_form"):
         activation_code = st.text_input("激活码", type="password", placeholder="输入20位激活码")
@@ -148,8 +166,10 @@ def upload_page():
                             st.session_state.vector_store_id = None
                             st.session_state.csv_content = ""
                             # 清除保存的vector store ID
-                            if 'saved_vector_store_id' in st.session_state:
-                                del st.session_state.saved_vector_store_id
+                            vector_keys = ['saved_vector_store_id', 'persistent_vector_store_id']
+                            for key in vector_keys:
+                                if key in st.session_state:
+                                    del st.session_state[key]
                             st.rerun()
 
                 if st.session_state.files_uploaded:
@@ -181,10 +201,13 @@ def chat_page():
         with col2:
             if st.button("🚪 退出登录"):
                 # 清除保存的激活码和vector store ID
-                if 'activation_code' in st.session_state:
-                    del st.session_state.activation_code
-                if 'saved_vector_store_id' in st.session_state:
-                    del st.session_state.saved_vector_store_id
+                keys_to_delete = [
+                    'activation_code', 'saved_vector_store_id',
+                    'persistent_activation_code', 'persistent_vector_store_id'
+                ]
+                for key in keys_to_delete:
+                    if key in st.session_state:
+                        del st.session_state[key]
                 # 重置所有状态
                 for key in list(st.session_state.keys()):
                     del st.session_state[key]
@@ -192,7 +215,7 @@ def chat_page():
         return
 
     st.title("💬 PCAP分析对话")
-    st.markdown(f"**激活码:** `{st.session_state.session_id[:8]}...` | **数据包数量:** {len(st.session_state.pcap_data) if st.session_state.pcap_data else 0} | **Vector Store:** `{st.session_state.vector_store_id[:8]}...`")
+    st.markdown(f"**激活码:** `{st.session_state.session_id[:8]}...` | **数据包数量:** {len(st.session_state.pcap_data) if st.session_state.pcap_data else 0} ")
 
     # 添加操作按钮和刷新提示
     col1, col2, col3 = st.columns([1, 1, 2])
@@ -203,10 +226,13 @@ def chat_page():
     with col2:
         if st.button("🚪 退出登录"):
             # 清除保存的激活码和vector store ID
-            if 'activation_code' in st.session_state:
-                del st.session_state.activation_code
-            if 'saved_vector_store_id' in st.session_state:
-                del st.session_state.saved_vector_store_id
+            keys_to_delete = [
+                'activation_code', 'saved_vector_store_id',
+                'persistent_activation_code', 'persistent_vector_store_id'
+            ]
+            for key in keys_to_delete:
+                if key in st.session_state:
+                    del st.session_state[key]
             # 重置所有状态
             for key in list(st.session_state.keys()):
                 del st.session_state[key]
