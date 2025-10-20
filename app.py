@@ -1,12 +1,13 @@
 import streamlit as st
 import tempfile
 import os
-import time
 from authen import check_uuid
 from convertor import load_pcap, split_pcap_to_csv, split_pcap_to_json
 from openai_helper import upload_files_to_vector_store, chat_with_vector_store, cleanup_files
 
-st.set_page_config(page_title="PCAP分析助手", page_icon="🛡️", layout="wide")
+# 从secrets或默认值获取应用配置
+app_title = st.secrets.get("app", {}).get("app_title", "PCAP分析助手")
+st.set_page_config(page_title=app_title, page_icon="🛡️", layout="wide")
 
 # Cookie管理功能
 def get_saved_activation_code():

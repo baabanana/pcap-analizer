@@ -1,6 +1,7 @@
 import time
 from openai import OpenAI
 import logging
+import streamlit as st
 
 def upload_files_to_vector_store(file_paths, session_id):
     """
@@ -13,7 +14,12 @@ def upload_files_to_vector_store(file_paths, session_id):
     Returns:
         vector_store_id: 创建的vector store ID
     """
-    client = OpenAI()
+    # 从secrets获取API密钥
+    api_key = st.secrets.get("openai", {}).get("api_key")
+    if api_key:
+        client = OpenAI(api_key=api_key)
+    else:
+        client = OpenAI()  # 使用环境变量
 
     print("=" * 60)
     print("步骤1: 上传文件到 OpenAI")
@@ -126,7 +132,12 @@ def chat_with_vector_store(messages, vector_store_id, csv_content=""):
     Returns:
         AI回复内容
     """
-    client = OpenAI()
+    # 从secrets获取API密钥
+    api_key = st.secrets.get("openai", {}).get("api_key")
+    if api_key:
+        client = OpenAI(api_key=api_key)
+    else:
+        client = OpenAI()  # 使用环境变量
 
     system_prompt = f"""你是一个网络安全专家，专门分析PCAP数据包。
     你有访问上传到vector store的JSON格式的详细数据包信息。
