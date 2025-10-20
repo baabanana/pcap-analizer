@@ -107,9 +107,9 @@ def auth_page():
     st.markdown("---")
     st.markdown("### 💳 获取激活码")
     st.markdown("如需购买激活码，请点击以下链接：")
-    st.markdown("🛒 [立即购买激活码](https://m.tb.cn/h.SQZU4yc?tk=ghh5f28Yp36)")
-    st.markdown("🛒 [立即购买激活码](https://m.tb.cn/h.SQaDNQK?tk=W5Rnf2Rra1t)")
     st.markdown("🛒 [立即购买激活码](https://m.tb.cn/h.SQZk6iO?tk=jVh5f28g6eR)")
+    st.markdown("🛒 [立即购买激活码](https://m.tb.cn/h.SQZU4yc?tk=ghh5f28Yp36)")
+    st.markdown("🛒 [备用链接](https://m.tb.cn/h.SQaDNQK?tk=W5Rnf2Rra1t)")
     st.markdown("💬 如有疑问，请联系客服获取支持")
 
 def upload_page():
