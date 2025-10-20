@@ -263,8 +263,8 @@ def auth_page():
 
     # 创建三列展示购买链接
     link_col1, link_col2, link_col3 = st.columns(3)
-    # with link_col1:
-    #     st.markdown("🛒 [自动发货激活码](https://m.tb.cn/h.SQZk6iO?tk=jVh5f28g6eR)")
+    with link_col1:
+        st.markdown("🛒 [自动发货激活码](https://m.tb.cn/h.SQ0WNYk?tk=8BcAf2naspW)")
     with link_col2:
         st.markdown("🛒 [人工发货激活码](https://m.tb.cn/h.SQZU4yc?tk=ghh5f28Yp36)")
     with link_col3:

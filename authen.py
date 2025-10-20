@@ -23,7 +23,7 @@ def check_uuid(uuid_to_check):
         return uuid_to_check in DEFAULT_UUIDS
 
 if __name__ == "__main__":
-    uuid_list = DEFAULT_UUIDS
+    uuid_list = st.secrets.get("auth", {}).get("activation_codes", [])
     for u in uuid_list:
         print(f"{u}")
     print(uuid_list)
