@@ -1,0 +1,2922 @@
+[
+  {
+    "summary": "Ether / IPv6 / ICMPv6 Neighbor Discovery - Neighbor Solicitation (tgt: fe80::b839:47ff:fe20:d383) / ICMPv6NDOptUnknown",
+    "timestamp": 1650769792.095647,
+    "length": 86,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:ff:20:d3:83",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "32",
+          "nh": "58",
+          "hlim": "255",
+          "src": "::",
+          "dst": "ff02::1:ff20:d383"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Neighbor Solicitation",
+        "fields": {
+          "type": "135",
+          "code": "0",
+          "cksum": "24040",
+          "res": "0",
+          "tgt": "fe80::b839:47ff:fe20:d383"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Scapy Unimplemented",
+        "fields": {
+          "type": "14",
+          "len": "1",
+          "data": "61019d3a6c78"
+        }
+      }
+    ],
+    "packet_index": 0
+  },
+  {
+    "summary": "Ether / :: > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769792.208999,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "5c:d2:e4:58:12:fc",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "::",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "23606",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff58:12fc auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 1
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Ans b'u20d-mate.local.'",
+    "timestamp": 1650769792.227902,
+    "length": 203,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "02:4f:33:d2:25:6c",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "361595",
+          "plen": "149",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::882f:b9ff:fe1b:941",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "149",
+          "chksum": "18609"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "1",
+          "opcode": "0",
+          "aa": "1",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "0",
+          "ancount": "2",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[]",
+          "an": "[<DNSRR  rrname=b'1.4.9.0.b.1.e.f.f.f.9.b.f.2.8.8.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' type=PTR cacheflush=1 rclass=IN ttl=120 rdata=b'u20d-mate.local.' |>, <DNSRR  rrname=b'u20d-mate.local.' type=AAAA cacheflush=1 rclass=IN ttl=120 rdata=fe80::882f:b9ff:fe1b:941 |>]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 2
+  },
+  {
+    "summary": "Ether / fe80::1298:36ff:feaf:ef9a > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769792.452113,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "10:98:36:af:ef:9a",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::1298:36ff:feaf:ef9a",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "18653",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ffaf:ef9a auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 3
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 10:98:36:af:ef:9a",
+    "timestamp": 1650769792.452204,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "10:98:36:af:ef:9a",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::1298:36ff:feaf:ef9a",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "3434",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "10:98:36:af:ef:9a"
+        }
+      }
+    ],
+    "packet_index": 4
+  },
+  {
+    "summary": "Ether / fe80::206:d7ff:fe37:44cf > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769792.479796,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "00:06:d7:37:44:cf",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::206:d7ff:fe37:44cf",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "21500",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff00:0 auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 5
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Qry b'_ipps._tcp.local.'",
+    "timestamp": 1650769792.552999,
+    "length": 107,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "02:4f:33:d2:25:6c",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "361595",
+          "plen": "53",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::882f:b9ff:fe1b:941",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "53",
+          "chksum": "18513"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "0",
+          "opcode": "0",
+          "aa": "0",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "2",
+          "ancount": "0",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[<DNSQR  qname=b'_ipps._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>, <DNSQR  qname=b'_ipp._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>]",
+          "an": "[]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 6
+  },
+  {
+    "summary": "Ether / fe80::230:6eff:fe5c:4dbc > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769792.639784,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::230:6eff:fe5c:4dbc",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "26024",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff5c:4dbc auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 7
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 00:30:6e:5c:4d:bc",
+    "timestamp": 1650769792.639869,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::230:6eff:fe5c:4dbc",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "669",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "00:30:6e:5c:4d:bc"
+        }
+      }
+    ],
+    "packet_index": 8
+  },
+  {
+    "summary": "Ether / IP / UDP / BOOTP / DHCP Request",
+    "timestamp": 1650769792.802285,
+    "length": 342,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "10:98:36:af:ef:9a",
+          "type": "2048"
+        }
+      },
+      {
+        "layer_name": "IP",
+        "fields": {
+          "version": "4",
+          "ihl": "5",
+          "tos": "16",
+          "len": "328",
+          "id": "0",
+          "flags": "",
+          "frag": "0",
+          "ttl": "128",
+          "proto": "17",
+          "chksum": "14742",
+          "src": "0.0.0.0",
+          "dst": "255.255.255.255",
+          "options": "[]"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "68",
+          "dport": "67",
+          "len": "308",
+          "chksum": "36138"
+        }
+      },
+      {
+        "layer_name": "BOOTP",
+        "fields": {
+          "op": "1",
+          "htype": "1",
+          "hlen": "6",
+          "hops": "0",
+          "xid": "3916441635",
+          "secs": "0",
+          "flags": "",
+          "ciaddr": "0.0.0.0",
+          "yiaddr": "0.0.0.0",
+          "siaddr": "0.0.0.0",
+          "giaddr": "0.0.0.0",
+          "chaddr": "109836afef9a00000000000000000000",
+          "sname": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "file": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "options": "63825363"
+        }
+      },
+      {
+        "layer_name": "DHCP options",
+        "fields": {
+          "options": "[('message-type', 3), ('server_id', '130.166.120.228'), ('requested_addr', '130.166.120.70'), ('hostname', b'hera'), ('param_req_list', [1, 28, 2, 3, 15, 6, 119, 12, 44, 47, 26, 121, 42]), 'end', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad']"
+        }
+      }
+    ],
+    "packet_index": 9
+  },
+  {
+    "summary": "Ether / ARP who has 130.166.120.243 says 130.166.120.228",
+    "timestamp": 1650769792.813548,
+    "length": 42,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2054"
+        }
+      },
+      {
+        "layer_name": "ARP",
+        "fields": {
+          "hwtype": "1",
+          "ptype": "2048",
+          "hwlen": "6",
+          "plen": "4",
+          "op": "1",
+          "hwsrc": "00:30:6e:5c:4d:bc",
+          "psrc": "130.166.120.228",
+          "hwdst": "00:00:00:00:00:00",
+          "pdst": "130.166.120.243"
+        }
+      }
+    ],
+    "packet_index": 10
+  },
+  {
+    "summary": "Ether / ARP who has 130.166.120.70 says 130.166.120.228",
+    "timestamp": 1650769792.831881,
+    "length": 42,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2054"
+        }
+      },
+      {
+        "layer_name": "ARP",
+        "fields": {
+          "hwtype": "1",
+          "ptype": "2048",
+          "hwlen": "6",
+          "plen": "4",
+          "op": "1",
+          "hwsrc": "00:30:6e:5c:4d:bc",
+          "psrc": "130.166.120.228",
+          "hwdst": "00:00:00:00:00:00",
+          "pdst": "130.166.120.70"
+        }
+      }
+    ],
+    "packet_index": 11
+  },
+  {
+    "summary": "Ether / fe80::7a3a:84ff:fe9c:e714 > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769792.859714,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "78:3a:84:9c:e7:14",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::7a3a:84ff:fe9c:e714",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "42092",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff9c:e714 auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 12
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 78:3a:84:9c:e7:14",
+    "timestamp": 1650769792.859795,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "78:3a:84:9c:e7:14",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::7a3a:84ff:fe9c:e714",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "45910",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "78:3a:84:9c:e7:14"
+        }
+      }
+    ],
+    "packet_index": 13
+  },
+  {
+    "summary": "Ether / fe80::206:d7ff:fe37:44cf > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769792.895994,
+    "length": 150,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "00:06:d7:37:44:cf",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "96",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::206:d7ff:fe37:44cf",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "1701",
+          "reserved": "0",
+          "records_number": "4",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff00:0 auxdata=b'' |<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff05::2 auxdata=b'' |<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::2 auxdata=b'' |<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff37:44cf auxdata=b'' |>>>>]"
+        }
+      }
+    ],
+    "packet_index": 14
+  },
+  {
+    "summary": "Ether / fe80::230:6eff:fe5c:4dbc > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769792.955947,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::230:6eff:fe5c:4dbc",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "26024",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff5c:4dbc auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 15
+  },
+  {
+    "summary": "Ether / fe80::219:bbff:fe9b:59b > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769792.959826,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "00:19:bb:9b:05:9b",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::219:bbff:fe9b:59b",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "43139",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff9b:59b auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 16
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 00:19:bb:9b:05:9b",
+    "timestamp": 1650769792.959917,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "00:19:bb:9b:05:9b",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::219:bbff:fe9b:59b",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "63630",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "00:19:bb:9b:05:9b"
+        }
+      }
+    ],
+    "packet_index": 17
+  },
+  {
+    "summary": "Ether / fe80::1298:36ff:feaf:ef9a > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769793.019759,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "10:98:36:af:ef:9a",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::1298:36ff:feaf:ef9a",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "18653",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ffaf:ef9a auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 18
+  },
+  {
+    "summary": "Ether / fe80::5ed2:e4ff:fe58:12fc > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769793.051801,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "5c:d2:e4:58:12:fc",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::5ed2:e4ff:fe58:12fc",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "2190",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff58:12fc auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 19
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 5c:d2:e4:58:12:fc",
+    "timestamp": 1650769793.051946,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "5c:d2:e4:58:12:fc",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::5ed2:e4ff:fe58:12fc",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "53983",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "5c:d2:e4:58:12:fc"
+        }
+      }
+    ],
+    "packet_index": 20
+  },
+  {
+    "summary": "Ether / fe80::b839:47ff:fe20:d383 > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769793.115708,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "52103",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff20:d383 auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 21
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address ba:39:47:20:d3:83",
+    "timestamp": 1650769793.115728,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "54642",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "ba:39:47:20:d3:83"
+        }
+      }
+    ],
+    "packet_index": 22
+  },
+  {
+    "summary": "Ether / fe80::b839:47ff:fe20:d383 > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769793.127725,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "40242",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::fb auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 23
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Qry b'_ipps._tcp.local.'",
+    "timestamp": 1650769793.216619,
+    "length": 107,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "637151",
+          "plen": "53",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "53",
+          "chksum": "53410"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "0",
+          "opcode": "0",
+          "aa": "0",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "2",
+          "ancount": "0",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[<DNSQR  qname=b'_ipps._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>, <DNSQR  qname=b'_ipp._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>]",
+          "an": "[]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 24
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Qry b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.'",
+    "timestamp": 1650769793.29812,
+    "length": 215,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "637151",
+          "plen": "161",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "161",
+          "chksum": "53518"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "0",
+          "opcode": "0",
+          "aa": "0",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "2",
+          "ancount": "0",
+          "nscount": "2",
+          "arcount": "0",
+          "qd": "[<DNSQR  qname=b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' qtype=ALL unicastresponse=0 qclass=IN |>, <DNSQR  qname=b'u20d-mate.local.' qtype=ALL unicastresponse=0 qclass=IN |>]",
+          "an": "[]",
+          "ns": "[<DNSRR  rrname=b'u20d-mate.local.' type=AAAA cacheflush=0 rclass=IN ttl=120 rdata=fe80::b839:47ff:fe20:d383 |>, <DNSRR  rrname=b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' type=PTR cacheflush=0 rclass=IN ttl=120 rdata=b'u20d-mate.local.' |>]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 25
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Ans b'u20d-mate.local.'",
+    "timestamp": 1650769793.359422,
+    "length": 203,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "02:4f:33:d2:25:6c",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "361595",
+          "plen": "149",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::882f:b9ff:fe1b:941",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "149",
+          "chksum": "18609"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "1",
+          "opcode": "0",
+          "aa": "1",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "0",
+          "ancount": "2",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[]",
+          "an": "[<DNSRR  rrname=b'1.4.9.0.b.1.e.f.f.f.9.b.f.2.8.8.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' type=PTR cacheflush=1 rclass=IN ttl=120 rdata=b'u20d-mate.local.' |>, <DNSRR  rrname=b'u20d-mate.local.' type=AAAA cacheflush=1 rclass=IN ttl=120 rdata=fe80::882f:b9ff:fe1b:941 |>]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 26
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Qry b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.'",
+    "timestamp": 1650769793.548119,
+    "length": 215,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "637151",
+          "plen": "161",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "161",
+          "chksum": "53518"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "0",
+          "opcode": "0",
+          "aa": "0",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "2",
+          "ancount": "0",
+          "nscount": "2",
+          "arcount": "0",
+          "qd": "[<DNSQR  qname=b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' qtype=ALL unicastresponse=0 qclass=IN |>, <DNSQR  qname=b'u20d-mate.local.' qtype=ALL unicastresponse=0 qclass=IN |>]",
+          "an": "[]",
+          "ns": "[<DNSRR  rrname=b'u20d-mate.local.' type=AAAA cacheflush=0 rclass=IN ttl=120 rdata=fe80::b839:47ff:fe20:d383 |>, <DNSRR  rrname=b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' type=PTR cacheflush=0 rclass=IN ttl=120 rdata=b'u20d-mate.local.' |>]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 27
+  },
+  {
+    "summary": "Ether / fe80::b839:47ff:fe20:d383 > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769793.595848,
+    "length": 110,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "56",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "51060",
+          "reserved": "0",
+          "records_number": "2",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::fb auxdata=b'' |<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff20:d383 auxdata=b'' |>>]"
+        }
+      }
+    ],
+    "packet_index": 28
+  },
+  {
+    "summary": "Ether / fe80::b839:47ff:fe20:d383 > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769793.599727,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "40242",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::fb auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 29
+  },
+  {
+    "summary": "Ether / fe80::5ed2:e4ff:fe58:12fc > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769793.659819,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "5c:d2:e4:58:12:fc",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::5ed2:e4ff:fe58:12fc",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "2190",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff58:12fc auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 30
+  },
+  {
+    "summary": "Ether / fe80::7a3a:84ff:fe9c:e714 > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769793.723757,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "78:3a:84:9c:e7:14",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::7a3a:84ff:fe9c:e714",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "42092",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff9c:e714 auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 31
+  },
+  {
+    "summary": "Ether / fe80::219:bbff:fe9b:59b > ff02::16 (0) / IPv6ExtHdrHopByHop / ICMPv6MLReport2",
+    "timestamp": 1650769793.727744,
+    "length": 90,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:16",
+          "src": "00:19:bb:9b:05:9b",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "36",
+          "nh": "0",
+          "hlim": "1",
+          "src": "fe80::219:bbff:fe9b:59b",
+          "dst": "ff02::16"
+        }
+      },
+      {
+        "layer_name": "IPv6 Extension Header - Hop-by-Hop Options Header",
+        "fields": {
+          "nh": "58",
+          "len": "0",
+          "autopad": "1",
+          "options": "[<RouterAlert  otype=Router Alert [00: skip, 0: Don't change en-route] optlen=2 value=Datagram contains a MLD message |>, <PadN  otype=PadN [00: skip, 0: Don't change en-route] optlen=0 optdata=b'' |>]"
+        }
+      },
+      {
+        "layer_name": "MLDv2 - Multicast Listener Report",
+        "fields": {
+          "type": "143",
+          "res": "0",
+          "cksum": "43139",
+          "reserved": "0",
+          "records_number": "1",
+          "records": "[<ICMPv6MLDMultAddrRec  rtype=4 auxdata_len=0 sources_number=0 dst=ff02::1:ff9b:59b auxdata=b'' |>]"
+        }
+      }
+    ],
+    "packet_index": 32
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Qry b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.'",
+    "timestamp": 1650769793.798072,
+    "length": 215,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "637151",
+          "plen": "161",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "161",
+          "chksum": "53518"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "0",
+          "opcode": "0",
+          "aa": "0",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "2",
+          "ancount": "0",
+          "nscount": "2",
+          "arcount": "0",
+          "qd": "[<DNSQR  qname=b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' qtype=ALL unicastresponse=0 qclass=IN |>, <DNSQR  qname=b'u20d-mate.local.' qtype=ALL unicastresponse=0 qclass=IN |>]",
+          "an": "[]",
+          "ns": "[<DNSRR  rrname=b'u20d-mate.local.' type=AAAA cacheflush=0 rclass=IN ttl=120 rdata=fe80::b839:47ff:fe20:d383 |>, <DNSRR  rrname=b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' type=PTR cacheflush=0 rclass=IN ttl=120 rdata=b'u20d-mate.local.' |>]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 33
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Ans b'u20d-mate.local.'",
+    "timestamp": 1650769793.998392,
+    "length": 203,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "637151",
+          "plen": "149",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "149",
+          "chksum": "53506"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "1",
+          "opcode": "0",
+          "aa": "1",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "0",
+          "ancount": "2",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[]",
+          "an": "[<DNSRR  rrname=b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' type=PTR cacheflush=1 rclass=IN ttl=120 rdata=b'u20d-mate.local.' |>, <DNSRR  rrname=b'u20d-mate.local.' type=AAAA cacheflush=1 rclass=IN ttl=120 rdata=fe80::b839:47ff:fe20:d383 |>]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 34
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Qry b'_ipps._tcp.local.'",
+    "timestamp": 1650769794.217261,
+    "length": 107,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "637151",
+          "plen": "53",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "53",
+          "chksum": "53410"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "0",
+          "opcode": "0",
+          "aa": "0",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "2",
+          "ancount": "0",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[<DNSQR  qname=b'_ipps._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>, <DNSQR  qname=b'_ipp._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>]",
+          "an": "[]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 35
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Qry b'_ipps._tcp.local.'",
+    "timestamp": 1650769794.554274,
+    "length": 107,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "02:4f:33:d2:25:6c",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "361595",
+          "plen": "53",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::882f:b9ff:fe1b:941",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "53",
+          "chksum": "18513"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "0",
+          "opcode": "0",
+          "aa": "0",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "2",
+          "ancount": "0",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[<DNSQR  qname=b'_ipps._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>, <DNSQR  qname=b'_ipp._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>]",
+          "an": "[]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 36
+  },
+  {
+    "summary": "Ether / IP / UDP / BOOTP / DHCP Discover",
+    "timestamp": 1650769794.584046,
+    "length": 342,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "5c:d2:e4:58:12:fc",
+          "type": "2048"
+        }
+      },
+      {
+        "layer_name": "IP",
+        "fields": {
+          "version": "4",
+          "ihl": "5",
+          "tos": "16",
+          "len": "328",
+          "id": "0",
+          "flags": "",
+          "frag": "0",
+          "ttl": "128",
+          "proto": "17",
+          "chksum": "14742",
+          "src": "0.0.0.0",
+          "dst": "255.255.255.255",
+          "options": "[]"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "68",
+          "dport": "67",
+          "len": "308",
+          "chksum": "51211"
+        }
+      },
+      {
+        "layer_name": "BOOTP",
+        "fields": {
+          "op": "1",
+          "htype": "1",
+          "hlen": "6",
+          "hops": "0",
+          "xid": "1396430456",
+          "secs": "3",
+          "flags": "",
+          "ciaddr": "0.0.0.0",
+          "yiaddr": "0.0.0.0",
+          "siaddr": "0.0.0.0",
+          "giaddr": "0.0.0.0",
+          "chaddr": "5cd2e45812fc00000000000000000000",
+          "sname": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "file": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "options": "63825363"
+        }
+      },
+      {
+        "layer_name": "DHCP options",
+        "fields": {
+          "options": "[('message-type', 1), ('hostname', b'zeus'), ('param_req_list', [1, 28, 2, 3, 15, 6, 119, 12, 44, 47, 26, 121, 42]), 'end', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad']"
+        }
+      }
+    ],
+    "packet_index": 37
+  },
+  {
+    "summary": "Ether / ARP who has 130.166.120.71 says 130.166.120.228",
+    "timestamp": 1650769794.584689,
+    "length": 42,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2054"
+        }
+      },
+      {
+        "layer_name": "ARP",
+        "fields": {
+          "hwtype": "1",
+          "ptype": "2048",
+          "hwlen": "6",
+          "plen": "4",
+          "op": "1",
+          "hwsrc": "00:30:6e:5c:4d:bc",
+          "psrc": "130.166.120.228",
+          "hwdst": "00:00:00:00:00:00",
+          "pdst": "130.166.120.71"
+        }
+      }
+    ],
+    "packet_index": 38
+  },
+  {
+    "summary": "Ether / IP / UDP / BOOTP / DHCP Discover",
+    "timestamp": 1650769794.743893,
+    "length": 342,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "78:3a:84:9c:e7:14",
+          "type": "2048"
+        }
+      },
+      {
+        "layer_name": "IP",
+        "fields": {
+          "version": "4",
+          "ihl": "5",
+          "tos": "16",
+          "len": "328",
+          "id": "0",
+          "flags": "",
+          "frag": "0",
+          "ttl": "128",
+          "proto": "17",
+          "chksum": "14742",
+          "src": "0.0.0.0",
+          "dst": "255.255.255.255",
+          "options": "[]"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "68",
+          "dport": "67",
+          "len": "308",
+          "chksum": "35930"
+        }
+      },
+      {
+        "layer_name": "BOOTP",
+        "fields": {
+          "op": "1",
+          "htype": "1",
+          "hlen": "6",
+          "hops": "0",
+          "xid": "774517289",
+          "secs": "3",
+          "flags": "",
+          "ciaddr": "0.0.0.0",
+          "yiaddr": "0.0.0.0",
+          "siaddr": "0.0.0.0",
+          "giaddr": "0.0.0.0",
+          "chaddr": "783a849ce71400000000000000000000",
+          "sname": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "file": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "options": "63825363"
+        }
+      },
+      {
+        "layer_name": "DHCP options",
+        "fields": {
+          "options": "[('message-type', 1), ('hostname', b'apollo'), ('param_req_list', [1, 28, 2, 3, 15, 6, 119, 12, 44, 47, 26, 121, 42]), 'end', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad']"
+        }
+      }
+    ],
+    "packet_index": 39
+  },
+  {
+    "summary": "Ether / ARP who has 130.166.120.72 says 130.166.120.228",
+    "timestamp": 1650769794.744614,
+    "length": 42,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2054"
+        }
+      },
+      {
+        "layer_name": "ARP",
+        "fields": {
+          "hwtype": "1",
+          "ptype": "2048",
+          "hwlen": "6",
+          "plen": "4",
+          "op": "1",
+          "hwsrc": "00:30:6e:5c:4d:bc",
+          "psrc": "130.166.120.228",
+          "hwdst": "00:00:00:00:00:00",
+          "pdst": "130.166.120.72"
+        }
+      }
+    ],
+    "packet_index": 40
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Ans b'u20d-mate.local.'",
+    "timestamp": 1650769795.130107,
+    "length": 203,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "637151",
+          "plen": "149",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "149",
+          "chksum": "53506"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "1",
+          "opcode": "0",
+          "aa": "1",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "0",
+          "ancount": "2",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[]",
+          "an": "[<DNSRR  rrname=b'3.8.3.d.0.2.e.f.f.f.7.4.9.3.8.b.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' type=PTR cacheflush=1 rclass=IN ttl=120 rdata=b'u20d-mate.local.' |>, <DNSRR  rrname=b'u20d-mate.local.' type=AAAA cacheflush=1 rclass=IN ttl=120 rdata=fe80::b839:47ff:fe20:d383 |>]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 41
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 02:4f:33:d2:25:6c",
+    "timestamp": 1650769795.419773,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "02:4f:33:d2:25:6c",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::882f:b9ff:fe1b:941",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "55060",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "02:4f:33:d2:25:6c"
+        }
+      }
+    ],
+    "packet_index": 42
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Ans b'u20d-mate.local.'",
+    "timestamp": 1650769795.490535,
+    "length": 203,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "02:4f:33:d2:25:6c",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "361595",
+          "plen": "149",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::882f:b9ff:fe1b:941",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "149",
+          "chksum": "18609"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "1",
+          "opcode": "0",
+          "aa": "1",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "0",
+          "ancount": "2",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[]",
+          "an": "[<DNSRR  rrname=b'1.4.9.0.b.1.e.f.f.f.9.b.f.2.8.8.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa.' type=PTR cacheflush=1 rclass=IN ttl=120 rdata=b'u20d-mate.local.' |>, <DNSRR  rrname=b'u20d-mate.local.' type=AAAA cacheflush=1 rclass=IN ttl=120 rdata=fe80::882f:b9ff:fe1b:941 |>]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 43
+  },
+  {
+    "summary": "Ether / IP / UDP / BOOTP / DHCP Request",
+    "timestamp": 1650769795.586202,
+    "length": 342,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "5c:d2:e4:58:12:fc",
+          "type": "2048"
+        }
+      },
+      {
+        "layer_name": "IP",
+        "fields": {
+          "version": "4",
+          "ihl": "5",
+          "tos": "16",
+          "len": "328",
+          "id": "0",
+          "flags": "",
+          "frag": "0",
+          "ttl": "128",
+          "proto": "17",
+          "chksum": "14742",
+          "src": "0.0.0.0",
+          "dst": "255.255.255.255",
+          "options": "[]"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "68",
+          "dport": "67",
+          "len": "308",
+          "chksum": "17581"
+        }
+      },
+      {
+        "layer_name": "BOOTP",
+        "fields": {
+          "op": "1",
+          "htype": "1",
+          "hlen": "6",
+          "hops": "0",
+          "xid": "1396430456",
+          "secs": "3",
+          "flags": "",
+          "ciaddr": "0.0.0.0",
+          "yiaddr": "0.0.0.0",
+          "siaddr": "0.0.0.0",
+          "giaddr": "0.0.0.0",
+          "chaddr": "5cd2e45812fc00000000000000000000",
+          "sname": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "file": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "options": "63825363"
+        }
+      },
+      {
+        "layer_name": "DHCP options",
+        "fields": {
+          "options": "[('message-type', 3), ('server_id', '130.166.120.228'), ('requested_addr', '130.166.120.71'), ('hostname', b'zeus'), ('param_req_list', [1, 28, 2, 3, 15, 6, 119, 12, 44, 47, 26, 121, 42]), 'end', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad']"
+        }
+      }
+    ],
+    "packet_index": 44
+  },
+  {
+    "summary": "Ether / ARP who has 130.166.120.71 says 130.166.120.228",
+    "timestamp": 1650769795.615819,
+    "length": 42,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2054"
+        }
+      },
+      {
+        "layer_name": "ARP",
+        "fields": {
+          "hwtype": "1",
+          "ptype": "2048",
+          "hwlen": "6",
+          "plen": "4",
+          "op": "1",
+          "hwsrc": "00:30:6e:5c:4d:bc",
+          "psrc": "130.166.120.228",
+          "hwdst": "00:00:00:00:00:00",
+          "pdst": "130.166.120.71"
+        }
+      }
+    ],
+    "packet_index": 45
+  },
+  {
+    "summary": "Ether / ARP who has 130.166.120.72 says 130.166.120.228",
+    "timestamp": 1650769795.775251,
+    "length": 42,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2054"
+        }
+      },
+      {
+        "layer_name": "ARP",
+        "fields": {
+          "hwtype": "1",
+          "ptype": "2048",
+          "hwlen": "6",
+          "plen": "4",
+          "op": "1",
+          "hwsrc": "00:30:6e:5c:4d:bc",
+          "psrc": "130.166.120.228",
+          "hwdst": "00:00:00:00:00:00",
+          "pdst": "130.166.120.72"
+        }
+      }
+    ],
+    "packet_index": 46
+  },
+  {
+    "summary": "Ether / IP / UDP / BOOTP / DHCP Offer",
+    "timestamp": 1650769795.775524,
+    "length": 342,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "78:3a:84:9c:e7:14",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2048"
+        }
+      },
+      {
+        "layer_name": "IP",
+        "fields": {
+          "version": "4",
+          "ihl": "5",
+          "tos": "16",
+          "len": "328",
+          "id": "0",
+          "flags": "",
+          "frag": "0",
+          "ttl": "128",
+          "proto": "17",
+          "chksum": "17180",
+          "src": "130.166.120.228",
+          "dst": "130.166.120.72",
+          "options": "[]"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "67",
+          "dport": "68",
+          "len": "308",
+          "chksum": "53740"
+        }
+      },
+      {
+        "layer_name": "BOOTP",
+        "fields": {
+          "op": "2",
+          "htype": "1",
+          "hlen": "6",
+          "hops": "0",
+          "xid": "774517289",
+          "secs": "3",
+          "flags": "",
+          "ciaddr": "0.0.0.0",
+          "yiaddr": "130.166.120.72",
+          "siaddr": "130.166.120.228",
+          "giaddr": "0.0.0.0",
+          "chaddr": "783a849ce71400000000000000000000",
+          "sname": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "file": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "options": "63825363"
+        }
+      },
+      {
+        "layer_name": "DHCP options",
+        "fields": {
+          "options": "[('message-type', 2), ('server_id', '130.166.120.228'), ('lease_time', 7200), ('subnet_mask', '255.255.255.0'), ('broadcast_address', '130.166.120.255'), ('router', '130.166.120.243'), ('domain', b'juno.io'), ('name_server', '70.184.98.27'), 'end', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad']"
+        }
+      }
+    ],
+    "packet_index": 47
+  },
+  {
+    "summary": "Ether / IP / UDP / BOOTP / DHCP Request",
+    "timestamp": 1650769795.776142,
+    "length": 342,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "78:3a:84:9c:e7:14",
+          "type": "2048"
+        }
+      },
+      {
+        "layer_name": "IP",
+        "fields": {
+          "version": "4",
+          "ihl": "5",
+          "tos": "16",
+          "len": "328",
+          "id": "0",
+          "flags": "",
+          "frag": "0",
+          "ttl": "128",
+          "proto": "17",
+          "chksum": "14742",
+          "src": "0.0.0.0",
+          "dst": "255.255.255.255",
+          "options": "[]"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "68",
+          "dport": "67",
+          "len": "308",
+          "chksum": "2044"
+        }
+      },
+      {
+        "layer_name": "BOOTP",
+        "fields": {
+          "op": "1",
+          "htype": "1",
+          "hlen": "6",
+          "hops": "0",
+          "xid": "774517289",
+          "secs": "3",
+          "flags": "",
+          "ciaddr": "0.0.0.0",
+          "yiaddr": "0.0.0.0",
+          "siaddr": "0.0.0.0",
+          "giaddr": "0.0.0.0",
+          "chaddr": "783a849ce71400000000000000000000",
+          "sname": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "file": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "options": "63825363"
+        }
+      },
+      {
+        "layer_name": "DHCP options",
+        "fields": {
+          "options": "[('message-type', 3), ('server_id', '130.166.120.228'), ('requested_addr', '130.166.120.72'), ('hostname', b'apollo'), ('param_req_list', [1, 28, 2, 3, 15, 6, 119, 12, 44, 47, 26, 121, 42]), 'end', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad']"
+        }
+      }
+    ],
+    "packet_index": 48
+  },
+  {
+    "summary": "Ether / IP / UDP / BOOTP / DHCP Ack",
+    "timestamp": 1650769795.778969,
+    "length": 342,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "78:3a:84:9c:e7:14",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2048"
+        }
+      },
+      {
+        "layer_name": "IP",
+        "fields": {
+          "version": "4",
+          "ihl": "5",
+          "tos": "16",
+          "len": "328",
+          "id": "0",
+          "flags": "",
+          "frag": "0",
+          "ttl": "128",
+          "proto": "17",
+          "chksum": "17180",
+          "src": "130.166.120.228",
+          "dst": "130.166.120.72",
+          "options": "[]"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "67",
+          "dport": "68",
+          "len": "308",
+          "chksum": "52972"
+        }
+      },
+      {
+        "layer_name": "BOOTP",
+        "fields": {
+          "op": "2",
+          "htype": "1",
+          "hlen": "6",
+          "hops": "0",
+          "xid": "774517289",
+          "secs": "3",
+          "flags": "",
+          "ciaddr": "0.0.0.0",
+          "yiaddr": "130.166.120.72",
+          "siaddr": "130.166.120.228",
+          "giaddr": "0.0.0.0",
+          "chaddr": "783a849ce71400000000000000000000",
+          "sname": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "file": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "options": "63825363"
+        }
+      },
+      {
+        "layer_name": "DHCP options",
+        "fields": {
+          "options": "[('message-type', 5), ('server_id', '130.166.120.228'), ('lease_time', 7200), ('subnet_mask', '255.255.255.0'), ('broadcast_address', '130.166.120.255'), ('router', '130.166.120.243'), ('domain', b'juno.io'), ('name_server', '70.184.98.27'), 'end', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad', 'pad']"
+        }
+      }
+    ],
+    "packet_index": 49
+  },
+  {
+    "summary": "Ether / IPv6 / UDP / mDNS Qry b'_ipps._tcp.local.'",
+    "timestamp": 1650769796.218143,
+    "length": 107,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:fb",
+          "src": "ba:39:47:20:d3:83",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "637151",
+          "plen": "53",
+          "nh": "17",
+          "hlim": "255",
+          "src": "fe80::b839:47ff:fe20:d383",
+          "dst": "ff02::fb"
+        }
+      },
+      {
+        "layer_name": "UDP",
+        "fields": {
+          "sport": "5353",
+          "dport": "5353",
+          "len": "53",
+          "chksum": "53410"
+        }
+      },
+      {
+        "layer_name": "DNS",
+        "fields": {
+          "id": "0",
+          "qr": "0",
+          "opcode": "0",
+          "aa": "0",
+          "tc": "0",
+          "rd": "0",
+          "ra": "0",
+          "z": "0",
+          "ad": "0",
+          "cd": "0",
+          "rcode": "0",
+          "qdcount": "2",
+          "ancount": "0",
+          "nscount": "0",
+          "arcount": "0",
+          "qd": "[<DNSQR  qname=b'_ipps._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>, <DNSQR  qname=b'_ipp._tcp.local.' qtype=PTR unicastresponse=0 qclass=IN |>]",
+          "an": "[]",
+          "ns": "[]",
+          "ar": "[]"
+        }
+      }
+    ],
+    "packet_index": 50
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 78:3a:84:9c:e7:14",
+    "timestamp": 1650769796.699673,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "78:3a:84:9c:e7:14",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::7a3a:84ff:fe9c:e714",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "45910",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "78:3a:84:9c:e7:14"
+        }
+      }
+    ],
+    "packet_index": 51
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 10:98:36:af:ef:9a",
+    "timestamp": 1650769796.699746,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "10:98:36:af:ef:9a",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::1298:36ff:feaf:ef9a",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "3434",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "10:98:36:af:ef:9a"
+        }
+      }
+    ],
+    "packet_index": 52
+  },
+  {
+    "summary": "Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 00:19:bb:9b:05:9b",
+    "timestamp": 1650769796.699783,
+    "length": 70,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "33:33:00:00:00:02",
+          "src": "00:19:bb:9b:05:9b",
+          "type": "34525"
+        }
+      },
+      {
+        "layer_name": "IPv6",
+        "fields": {
+          "version": "6",
+          "tc": "0",
+          "fl": "0",
+          "plen": "16",
+          "nh": "58",
+          "hlim": "255",
+          "src": "fe80::219:bbff:fe9b:59b",
+          "dst": "ff02::2"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery - Router Solicitation",
+        "fields": {
+          "type": "133",
+          "code": "0",
+          "cksum": "63630",
+          "res": "0"
+        }
+      },
+      {
+        "layer_name": "ICMPv6 Neighbor Discovery Option - Source Link-Layer Address",
+        "fields": {
+          "type": "1",
+          "len": "1",
+          "lladdr": "00:19:bb:9b:05:9b"
+        }
+      }
+    ],
+    "packet_index": 53
+  },
+  {
+    "summary": "Ether / ARP who has 130.166.120.72 says 130.166.120.228",
+    "timestamp": 1650769796.795776,
+    "length": 42,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "ff:ff:ff:ff:ff:ff",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2054"
+        }
+      },
+      {
+        "layer_name": "ARP",
+        "fields": {
+          "hwtype": "1",
+          "ptype": "2048",
+          "hwlen": "6",
+          "plen": "4",
+          "op": "1",
+          "hwsrc": "00:30:6e:5c:4d:bc",
+          "psrc": "130.166.120.228",
+          "hwdst": "00:00:00:00:00:00",
+          "pdst": "130.166.120.72"
+        }
+      }
+    ],
+    "packet_index": 54
+  },
+  {
+    "summary": "Ether / ARP is at 78:3a:84:9c:e7:14 says 130.166.120.72",
+    "timestamp": 1650769796.795833,
+    "length": 42,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "00:30:6e:5c:4d:bc",
+          "src": "78:3a:84:9c:e7:14",
+          "type": "2054"
+        }
+      },
+      {
+        "layer_name": "ARP",
+        "fields": {
+          "hwtype": "1",
+          "ptype": "2048",
+          "hwlen": "6",
+          "plen": "4",
+          "op": "2",
+          "hwsrc": "78:3a:84:9c:e7:14",
+          "psrc": "130.166.120.72",
+          "hwdst": "00:30:6e:5c:4d:bc",
+          "pdst": "130.166.120.228"
+        }
+      }
+    ],
+    "packet_index": 55
+  },
+  {
+    "summary": "Ether / IP / ICMP 130.166.120.228 > 130.166.120.72 echo-request 0 / Raw",
+    "timestamp": 1650769796.795863,
+    "length": 62,
+    "layers": [
+      {
+        "layer_name": "Ethernet",
+        "fields": {
+          "dst": "78:3a:84:9c:e7:14",
+          "src": "00:30:6e:5c:4d:bc",
+          "type": "2048"
+        }
+      },
+      {
+        "layer_name": "IP",
+        "fields": {
+          "version": "4",
+          "ihl": "5",
+          "tos": "0",
+          "len": "48",
+          "id": "26267",
+          "flags": "DF",
+          "frag": "0",
+          "ttl": "64",
+          "proto": "1",
+          "chksum": "56760",
+          "src": "130.166.120.228",
+          "dst": "130.166.120.72",
+          "options": "[]"
+        }
+      },
+      {
+        "layer_name": "ICMP",
+        "fields": {
+          "type": "8",
+          "code": "0",
+          "chksum": "10168",
+          "id": "53319",
+          "seq": "0",
+          "unused": ""
+        }
+      },
+      {
+        "layer_name": "Raw",
+        "fields": {
+          "load": "0000000000000000000000000000000000000000"
+        }
+      }
+    ],
+    "packet_index": 56
+  }
+]
