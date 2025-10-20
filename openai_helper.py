@@ -140,12 +140,12 @@ def chat_with_vector_store(messages, vector_store_id, csv_content=""):
     full_messages = [{"role": "system", "content": system_prompt}] + messages
 
     try:
-        response = client.chat.completions.create(
+        # 使用beta版本的Assistants API进行vector store搜索
+        assistant = client.beta.assistants.create(
+            name="PCAP分析助手",
+            instructions=system_prompt,
             model="gpt-4",
-            messages=full_messages,
-            tools=[{
-                "type": "file_search"
-            }],
+            tools=[{"type": "file_search"}],
             tool_resources={
                 "file_search": {
                     "vector_store_ids": [vector_store_id]
@@ -153,7 +153,27 @@ def chat_with_vector_store(messages, vector_store_id, csv_content=""):
             }
         )
 
-        return response.choices[0].message.content
+        thread = client.beta.threads.create()
+
+        for msg in messages:
+            client.beta.threads.messages.create(
+                thread_id=thread.id,
+                role=msg["role"],
+                content=msg["content"]
+            )
+
+        run = client.beta.threads.runs.create_and_poll(
+            thread_id=thread.id,
+            assistant_id=assistant.id
+        )
+
+        if run.status == 'completed':
+            messages = client.beta.threads.messages.list(
+                thread_id=thread.id
+            )
+            return messages.data[0].content[0].text.value
+        else:
+            return f"处理失败，状态: {run.status}"
 
     except Exception as e:
         logging.error(f"OpenAI API调用失败: {str(e)}")

@@ -59,15 +59,15 @@ def upload_page():
                 st.info(f"成功加载 {len(packets)} 个数据包")
 
                 if not st.session_state.files_uploaded:
-                    if st.button("🚀 处理文件并上传到Vector Store", type="primary"):
-                        with st.spinner("正在生成CSV和JSON文件..."):
+                    if st.button("🚀 处理文件并上传到AI", type="primary"):
+                        with st.spinner("正在生成"):
                             csv_file = split_pcap_to_csv(packets, st.session_state.session_id)
                             json_files = split_pcap_to_json(packets, st.session_state.session_id, 10)
 
                             with open(csv_file, 'r', encoding='utf-8') as f:
                                 st.session_state.csv_content = f.read()
 
-                        with st.spinner("正在上传JSON文件到OpenAI Vector Store..."):
+                        with st.spinner("正在上传"):
                             try:
                                 vector_store_id = upload_files_to_vector_store(json_files, st.session_state.session_id)
                                 if vector_store_id:
@@ -103,13 +103,13 @@ def upload_page():
             finally:
                 os.unlink(tmp_file_path)
 
-    if st.button("返回激活码验证"):
-        st.session_state.step = "auth"
-        st.session_state.session_id = None
-        st.session_state.files_uploaded = False
-        st.session_state.vector_store_id = None
-        st.session_state.csv_content = ""
-        st.rerun()
+    # if st.button("返回激活码验证"):
+    #     st.session_state.step = "auth"
+    #     st.session_state.session_id = None
+    #     st.session_state.files_uploaded = False
+    #     st.session_state.vector_store_id = None
+    #     st.session_state.csv_content = ""
+    #     st.rerun()
 
 def chat_page():
     if not st.session_state.vector_store_id:
