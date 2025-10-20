@@ -1,17 +1,60 @@
 import streamlit as st
 import tempfile
 import os
-from openai import OpenAI
+import time
 from authen import check_uuid
 from convertor import load_pcap, split_pcap_to_csv, split_pcap_to_json
 from openai_helper import upload_files_to_vector_store, chat_with_vector_store, cleanup_files
 
 st.set_page_config(page_title="PCAP分析助手", page_icon="🛡️", layout="wide")
 
-if "step" not in st.session_state:
-    st.session_state.step = "auth"
-if "session_id" not in st.session_state:
-    st.session_state.session_id = None
+# Cookie管理功能
+def get_saved_activation_code():
+    """从cookie中获取保存的激活码"""
+    if 'activation_code' in st.session_state:
+        return st.session_state.activation_code
+    return None
+
+def get_saved_vector_store_id():
+    """从cookie中获取保存的vector store ID"""
+    if 'saved_vector_store_id' in st.session_state:
+        return st.session_state.saved_vector_store_id
+    return None
+
+def save_activation_code(code):
+    """保存激活码到session state（作为简单cookie实现）"""
+    st.session_state.activation_code = code
+
+def save_vector_store_id(vector_store_id):
+    """保存vector store ID到session state"""
+    st.session_state.saved_vector_store_id = vector_store_id
+
+# 检查是否有保存的激活码和vector store
+saved_code = get_saved_activation_code()
+saved_vector_store = get_saved_vector_store_id()
+
+if saved_code and check_uuid(saved_code):
+    # 如果有有效的保存激活码
+    if "session_id" not in st.session_state:
+        st.session_state.session_id = saved_code
+
+    # 如果同时有保存的vector store，直接进入chat界面
+    if saved_vector_store and "step" not in st.session_state:
+        st.session_state.step = "chat"
+        if "vector_store_id" not in st.session_state:
+            st.session_state.vector_store_id = saved_vector_store
+        if "files_uploaded" not in st.session_state:
+            st.session_state.files_uploaded = True
+    else:
+        # 只有激活码，进入upload界面
+        if "step" not in st.session_state:
+            st.session_state.step = "upload"
+else:
+    # 没有有效激活码，从认证页面开始
+    if "step" not in st.session_state:
+        st.session_state.step = "auth"
+    if "session_id" not in st.session_state:
+        st.session_state.session_id = None
 if "pcap_data" not in st.session_state:
     st.session_state.pcap_data = None
 if "messages" not in st.session_state:
@@ -33,6 +76,8 @@ def auth_page():
 
         if submitted:
             if check_uuid(activation_code):
+                # 保存激活码到cookie
+                save_activation_code(activation_code)
                 st.session_state.session_id = activation_code
                 st.session_state.step = "upload"
                 st.success("激活码验证成功！")
@@ -81,6 +126,8 @@ def upload_page():
                                 if vector_store_id:
                                     st.session_state.vector_store_id = vector_store_id
                                     st.session_state.files_uploaded = True
+                                    # 保存vector store ID到cookie
+                                    save_vector_store_id(vector_store_id)
                                     st.success(f"✅ 文件处理完成！Vector Store ID: {vector_store_id[:8]}...")
 
                                     cleanup_files(json_files + [csv_file])
@@ -99,6 +146,9 @@ def upload_page():
                             st.session_state.files_uploaded = False
                             st.session_state.vector_store_id = None
                             st.session_state.csv_content = ""
+                            # 清除保存的vector store ID
+                            if 'saved_vector_store_id' in st.session_state:
+                                del st.session_state.saved_vector_store_id
                             st.rerun()
 
                 if st.session_state.files_uploaded:
@@ -122,17 +172,46 @@ def upload_page():
 def chat_page():
     if not st.session_state.vector_store_id:
         st.error("❌ 请先上传并处理PCAP文件")
-        if st.button("返回文件上传"):
-            st.session_state.step = "upload"
-            st.rerun()
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("返回文件上传"):
+                st.session_state.step = "upload"
+                st.rerun()
+        with col2:
+            if st.button("🚪 退出登录"):
+                # 清除保存的激活码和vector store ID
+                if 'activation_code' in st.session_state:
+                    del st.session_state.activation_code
+                if 'saved_vector_store_id' in st.session_state:
+                    del st.session_state.saved_vector_store_id
+                # 重置所有状态
+                for key in list(st.session_state.keys()):
+                    del st.session_state[key]
+                st.rerun()
         return
 
     st.title("💬 PCAP分析对话")
     st.markdown(f"**激活码:** `{st.session_state.session_id[:8]}...` | **数据包数量:** {len(st.session_state.pcap_data) if st.session_state.pcap_data else 0} | **Vector Store:** `{st.session_state.vector_store_id[:8]}...`")
 
-    if st.button("返回文件上传"):
-        st.session_state.step = "upload"
-        st.rerun()
+    # 添加操作按钮和刷新提示
+    col1, col2, col3 = st.columns([1, 1, 2])
+    with col1:
+        if st.button("返回文件上传"):
+            st.session_state.step = "upload"
+            st.rerun()
+    with col2:
+        if st.button("🚪 退出登录"):
+            # 清除保存的激活码和vector store ID
+            if 'activation_code' in st.session_state:
+                del st.session_state.activation_code
+            if 'saved_vector_store_id' in st.session_state:
+                del st.session_state.saved_vector_store_id
+            # 重置所有状态
+            for key in list(st.session_state.keys()):
+                del st.session_state[key]
+            st.rerun()
+    with col3:
+        st.info("💡 提示: 如遇到问题，请尝试刷新页面（F5）或清除浏览器缓存")
 
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
