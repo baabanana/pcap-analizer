@@ -1,6 +1,7 @@
-from scapy.all import rdpcap
+from scapy.all import rdpcap, Packet
 import csv
 import logging
+import json
 import math
 
 def load_pcap(file_path):
@@ -63,8 +64,12 @@ def split_pcap_to_csv(packets, session_id):
             'Info': pkt.summary()
         })
     
+    # 确保data目录存在
+    import os
+    os.makedirs('data', exist_ok=True)
+
     # 写入CSV
-    output_csv = f"{session_id}_summary.csv"
+    output_csv = f"data/{session_id}_summary.csv"
 
     with open(output_csv, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=headers)
@@ -107,10 +112,9 @@ def packet_to_dict(pkt):
     
     return packet_dict
 
-def split_pcap_to_json(packets,session_id):
+def split_pcap_to_json(packets, session_id, num_files=10):
     # 读取数据包
     total_packets = len(packets)
-    num_files = 10
 
     # 计算每个文件应包含的数据包数量
     packets_per_file = math.ceil(total_packets / num_files)
@@ -134,8 +138,12 @@ def split_pcap_to_json(packets,session_id):
             packet_data['packet_index'] = i  # 保持原始索引
             packets_json.append(packet_data)
         
+        # 确保data目录存在
+        import os
+        os.makedirs('data', exist_ok=True)
+
         # 保存为单独的 JSON 文件
-        filename = f'{session_id}_packets_part_{file_index + 1:02d}.json'
+        filename = f'data/{session_id}_packets_part_{file_index + 1:02d}.json'
         filename_list.append(filename)
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(packets_json, f, indent=2, ensure_ascii=False)

@@ -62,7 +62,7 @@ def upload_page():
                     if st.button("🚀 处理文件并上传到AI", type="primary"):
                         with st.spinner("正在生成"):
                             csv_file = split_pcap_to_csv(packets, st.session_state.session_id)
-                            json_files = split_pcap_to_json(packets, st.session_state.session_id, 10)
+                            json_files = split_pcap_to_json(packets, st.session_state.session_id)
 
                             with open(csv_file, 'r', encoding='utf-8') as f:
                                 st.session_state.csv_content = f.read()
