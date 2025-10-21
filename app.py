@@ -289,13 +289,6 @@ def auth_page():
     # 调试信息 - 显示当前保存的状态
     saved_code = get_persistent_activation_code()
     saved_vector = get_persistent_vector_store_id()
-    if saved_code or saved_vector:
-        with st.expander("🔍 调试信息"):
-            st.write(f"保存的激活码: {saved_code[:8] + '...' if saved_code else '无'}")
-            st.write(f"保存的Vector Store: {saved_vector[:8] + '...' if saved_vector else '无'}")
-            st.write(f"试用状态: {trial_status}")
-            st.write(f"Session State Keys: {list(st.session_state.keys())}")
-
     st.markdown("---")
     st.markdown("### 💳 获取激活码")
     st.markdown("如需购买激活码，请点击以下链接：")
