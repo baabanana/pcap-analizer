@@ -231,7 +231,10 @@ def auth_page():
         show_mobile_redirect()
         return
 
-    st.title("🛡️ 9137 Super Helper")
+    st.title("🛡️ 9137 超级AI")
+    # 添加一些解释
+    st.markdown("""
+    你不再需要理解DHCP, TCP, STMP等复杂的概念, 只需要在这里上传在9137中提供的PCAP文件, 你就可以让这里最聪明的ChatGPT 5理解所有的数据包内容，帮你分析任何问题!""")
 
     # 检查试用状态
     trial_status = check_trial_status()
