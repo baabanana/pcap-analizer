@@ -1,5 +1,6 @@
 from scapy.utils import rdpcap
 from scapy.packet import Packet
+from scapy.all import Ether, Raw
 import csv
 import logging
 import json
@@ -7,12 +8,25 @@ import math
 
 def load_pcap(file_path):
     """
-    加载PCAP文件并返回数据包列表
+    加载PCAP文件并尝试重新解析
     """
     packets = rdpcap(file_path)
-    logging.info(f"Loaded {len(packets)} packets from {file_path}")
-    return packets
-
+    
+    # 如果包是 Raw 类型，尝试用 Ether 重新解析
+    parsed_packets = []
+    for pkt in packets:
+        if isinstance(pkt, Raw) or pkt.name == 'Raw':
+            # 尝试将 Raw 数据重新解析为以太网帧
+            try:
+                parsed_pkt = Ether(bytes(pkt))
+                parsed_packets.append(parsed_pkt)
+            except:
+                parsed_packets.append(pkt)
+        else:
+            parsed_packets.append(pkt)
+    
+    logging.info(f"Loaded {len(parsed_packets)} packets from {file_path}")
+    return parsed_packets
 
 def split_pcap_to_csv(packets, session_id):
     """
@@ -153,4 +167,12 @@ def split_pcap_to_json(packets, session_id, num_files=10):
         print(f"✓ {filename}: 包含数据包 {start_idx}-{end_idx-1} ({len(packets_json)} 个)")
 
     return filename_list
+
+
+if __name__ == "__main__":
+    pacp_path="./apollo_eth0_sample_24.pcap"
+    session_id="testsession1234"
+    packets = load_pcap(pacp_path)
+    print(packets[0])
+    print(split_pcap_to_csv(packets, session_id))
 

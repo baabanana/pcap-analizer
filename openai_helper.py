@@ -209,7 +209,7 @@ def chat_with_vector_store(messages, vector_store_id, csv_content=""):
 
     现在，请根据用户的问题提供专业分析。
     """
-
+    logging.info(f"csv: {csv_content}")
     full_messages = [{"role": "system", "content": system_prompt}] + messages
     logging.info(f"完整消息: {full_messages}")
     try:
