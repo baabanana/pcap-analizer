@@ -529,7 +529,7 @@ def chat_page():
                     st.rerun()
 
     if can_chat:
-        if prompt := st.chat_input("询问关于PCAP数据的问题..."):
+        if prompt := st.chat_input("请把所有的题目直接粘贴进来"):
             # 试用模式：增加对话计数
             if is_trial_mode():
                 st.session_state.trial_count = st.session_state.get('trial_count', 0) + 1
