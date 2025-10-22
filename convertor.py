@@ -1,178 +1,117 @@
-from scapy.utils import rdpcap
-from scapy.packet import Packet
-from scapy.all import Ether, Raw
-import csv
-import logging
-import json
-import math
+from scapy.all import rdpcap, IP, TCP, UDP, ICMP, DNS, DHCP, Raw
+from scapy.layers.http import HTTPRequest, HTTPResponse
+import ssl
 
 def load_pcap(file_path):
-    """
-    加载PCAP文件并尝试重新解析
-    """
     packets = rdpcap(file_path)
-    
-    # 如果包是 Raw 类型，尝试用 Ether 重新解析
-    parsed_packets = []
-    for pkt in packets:
-        if isinstance(pkt, Raw) or pkt.name == 'Raw':
-            # 尝试将 Raw 数据重新解析为以太网帧
-            try:
-                parsed_pkt = Ether(bytes(pkt))
-                parsed_packets.append(parsed_pkt)
-            except:
-                parsed_packets.append(pkt)
-        else:
-            parsed_packets.append(pkt)
-    
-    logging.info(f"Loaded {len(parsed_packets)} packets from {file_path}")
-    return parsed_packets
+    return packets
 
-def split_pcap_to_csv(packets, session_id):
-    """
-    简化版：只保存源、目标、协议、摘要
-    """
+def layer_detector(packet):
+    """detect layers in a packet, and add all the info into a list"""
+    target_layers=[IP, TCP, UDP, ICMP, DNS, DHCP, HTTPRequest, HTTPResponse, Raw]
+    packet_info=[]
+    for layer in target_layers:
+        if packet.haslayer(layer):
+            icmp_layer = packet[layer]
+            packet_info.append(icmp_layer.show(dump=True))
+            #deal stmp
+            if layer==TCP and (packet[TCP].dport==25 or packet[TCP].sport==25):
+                smtp_info = [
+                    "*** SMTP Layer ***",
+                    f"Source Port: {packet[TCP].sport}",
+                    f"Destination Port: {packet[TCP].dport}",
+                ]
+                                # 检查是否有 Raw 层
+                if packet.haslayer(Raw):
+                    smtp_info.append(f"Raw Data: {packet[Raw].load.decode('utf-8', 'ignore')}")
+                else:
+                    smtp_info.append("Raw Data: No payload")
+                    
+                packet_info.append('\n'.join(smtp_info))
+                packet_info.append(smtp_info)
     
-    headers = ['No.', 'Source', 'Destination', 'Protocol', 'Info']
-    rows = []
-    
-    for idx, pkt in enumerate(packets, start=1):
-        # 提取源地址
-        src = ''
-        if pkt.haslayer('IP'):
-            src = pkt['IP'].src
-        elif pkt.haslayer('IPv6'):
-            src = pkt['IPv6'].src
-        elif pkt.haslayer('Ether'):
-            src = pkt['Ether'].src
-        
-        # 提取目标地址
-        dst = ''
-        if pkt.haslayer('IP'):
-            dst = pkt['IP'].dst
-        elif pkt.haslayer('IPv6'):
-            dst = pkt['IPv6'].dst
-        elif pkt.haslayer('Ether'):
-            dst = pkt['Ether'].dst
-        
-        # 提取协议
-        protocol = ''
-        if pkt.haslayer('TCP'):
-            protocol = 'TCP'
-        elif pkt.haslayer('UDP'):
-            protocol = 'UDP'
-        elif pkt.haslayer('ICMP'):
-            protocol = 'ICMP'
-        elif pkt.haslayer('ICMPv6'):
-            protocol = 'ICMPv6'
-        elif pkt.haslayer('ARP'):
-            protocol = 'ARP'
-        elif pkt.haslayer('DNS'):
-            protocol = 'DNS'
-        else:
-            protocol = pkt.summary().split()[0]
-        
-        rows.append({
-            'No.': idx,
-            'Source': src,
-            'Destination': dst,
-            'Protocol': protocol,
-            'Info': pkt.summary()
-        })
-    
-    # 确保data目录存在
-    import os
-    os.makedirs('data', exist_ok=True)
+    # 添加raw层的内容, 如果RAW还比较小
+    if packet.haslayer(Raw) and len(packet[Raw].load)<1000:
+        raw_data = packet[Raw].load
+        try:
+            decoded_data = raw_data.decode('utf-8')
+        except UnicodeDecodeError:
+            decoded_data = raw_data.decode('utf-8', 'ignore')
+        packet_info.append(f"*** Raw Layer ***\nData: {decoded_data}\n")
+    return packet_info
 
-    # 写入CSV
-    output_csv = f"data/{session_id}_summary.csv"
+def layer_simple_detector(packet):
+    """detect layers in a packet, and add all the info into a list"""
+    #target_layers=[IP, TCP, UDP, ICMP, DNS, DHCP, HTTPRequest, HTTPResponse, Raw]
+    packet_info=[]
+    packet_info.append(f"*** Packet Summary ***\n{packet.summary()}\n")
+    if packet.haslayer(IP):
+        packet_info.append(f"*** IP Layer ***\nSource IP: {packet[IP].src}\nDestination IP: {packet[IP].dst}\n")
+    if packet.haslayer(TCP): # 输出tcp的端口, 是ACK还是SYN还是啥, 长度
+        packet_info.append(f"*** TCP Layer ***\nSource Port: {packet[TCP].sport}\nDestination Port: {packet[TCP].dport}\nFlags: {packet[TCP].flags}\nLength: {len(packet[TCP])}\n")
+    if packet.haslayer(UDP): # 输出udp的端口
+        packet_info.append(f"*** UDP Layer ***\nSource Port: {packet[UDP].sport}\nDestination Port: {packet[UDP].dport}\n")
+    if packet.haslayer(ICMP): # 输出icmp的type和code
+        packet_info.append(f"*** ICMP Layer ***\nType: {packet[ICMP].type}\nCode: {packet[ICMP].code}\n")
+    if packet.haslayer(DNS): # 输出dns的id和查询名, 如果是相应也输出响应
+        packet_info.append(f"*** DNS Layer ***\nID: {packet[DNS].id}\n")
+        if packet[DNS].an:
+            packet_info.append(f"Answers: {packet[DNS].an}\n")
+        if packet[DNS].ns:
+            packet_info.append(f"Query Name: {packet[DNS].qd.qname.decode('utf-8')}\n")
+    if packet.haslayer(DHCP): # 输出dhcp的options
+        packet_info.append(f"*** DHCP Layer ***\nOptions: {packet[DHCP].options}\n")
+    if packet.haslayer(HTTPRequest): # 输出http请求的host, path, method, 包大小
+        packet_info.append(f"*** HTTP Request Layer ***\nHost: {packet[HTTPRequest].Host.decode('utf-8')}\nPath: {packet[HTTPRequest].Path.decode('utf-8')}\nMethod: {packet[HTTPRequest].Method.decode('utf-8')}\nPacket Size: {len(packet[HTTPRequest])}\n")
+    if packet.haslayer(HTTPResponse): # 输出http响应的状态码
+        packet_info.append(f"*** HTTP Response Layer ***\nStatus Code: {packet[HTTPResponse].Status_Code.decode('utf-8')}\nPacket Size: {len(packet[HTTPResponse])}\n")
+    if packet.haslayer(TCP) and (packet[TCP].dport==25 or packet[TCP].sport==25) and packet.haslayer(Raw): # STMP
+        packet_info.append(f"*** SMTP Layer ***\nSource Port: {packet[TCP].sport}\nDestination Port: {packet[TCP].dport}\nRaw Data: {packet[Raw].load.decode('utf-8', 'ignore')}\n")
 
-    with open(output_csv, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=headers)
-        writer.writeheader()
-        writer.writerows(rows)
-    
-    logging.info(f"✅ 导出完成：{len(rows)} 个数据包 -> {output_csv}")
-    return output_csv
+    return packet_info
 
-def packet_to_dict(pkt):
-    """递归提取数据包的所有层和字段"""
-    packet_dict = {
-        'summary': pkt.summary(),
-        'timestamp': float(pkt.time) if hasattr(pkt, 'time') else None,
-        'length': len(pkt),
-        'layers': []
-    }
-    
-    # 遍历所有协议层
-    layer = pkt
-    while layer:
-        layer_dict = {
-            'layer_name': layer.name,
-            'fields': {}
-        }
-        
-        # 提取该层的所有字段
-        for field_name, field_value in layer.fields.items():
-            # 处理不同类型的字段值
-            if isinstance(field_value, bytes):
-                layer_dict['fields'][field_name] = field_value.hex()
-            elif isinstance(field_value, Packet):
-                # 如果字段值是另一个数据包，递归处理
-                layer_dict['fields'][field_name] = packet_to_dict(field_value)
-            else:
-                layer_dict['fields'][field_name] = str(field_value)
-        
-        packet_dict['layers'].append(layer_dict)
-        layer = layer.payload if layer.payload else None
-    
-    return packet_dict
-
-def split_pcap_to_json(packets, session_id, num_files=10):
-    # 读取数据包
+def split_pcap_to_txt(packets, session_id, txt_split_num=5, summary_mode=False):
+    """load every packets, using layer_detector, and split them into several txt files"""
+    if summary_mode:
+        txt_split_num = 1
     total_packets = len(packets)
-
-    # 计算每个文件应包含的数据包数量
-    packets_per_file = math.ceil(total_packets / num_files)
-
-    print(f"总共 {total_packets} 个数据包，将拆分为 {num_files} 个文件")
-    print(f"每个文件约 {packets_per_file} 个数据包")
-
-    filename_list=[]
-    # 拆分并保存
-    for file_index in range(num_files):
-        start_idx = file_index * packets_per_file
-        end_idx = min(start_idx + packets_per_file, total_packets)
-        
-        # 如果起始索引已经超出范围，跳出循环
-        if start_idx >= total_packets:
+    packets_per_file = total_packets // txt_split_num + 1
+    txt_file_paths = []
+    for i in range(txt_split_num):
+        start_index = i * packets_per_file
+        end_index = min((i + 1) * packets_per_file, total_packets)
+        if start_index >= total_packets:
             break
-        
-        packets_json = []
-        for i in range(start_idx, end_idx):
-            packet_data = packet_to_dict(packets[i])
-            packet_data['packet_index'] = i  # 保持原始索引
-            packets_json.append(packet_data)
-        
-        # 确保data目录存在
+        # 检查有没有data目录, 没有就创建
         import os
-        os.makedirs('data', exist_ok=True)
+        if not os.path.exists('data'):
+            os.makedirs('data')
 
-        # 保存为单独的 JSON 文件
-        filename = f'data/{session_id}_packets_part_{file_index + 1:02d}.json'
-        filename_list.append(filename)
-        with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(packets_json, f, indent=2, ensure_ascii=False)
-        
-        print(f"✓ {filename}: 包含数据包 {start_idx}-{end_idx-1} ({len(packets_json)} 个)")
-
-    return filename_list
+        txt_file_path = f"data/{session_id}_{"summary" if summary_mode else f"part{i+1}"}.txt"
+        with open(txt_file_path, 'w') as txt_file:
+            for j in range(start_index, end_index):
+                if summary_mode:
+                    packet_info = layer_simple_detector(packets[j])
+                else:
+                    packet_info = layer_detector(packets[j])
+                txt_file.write(f"*** Packet {j+1} ***\n")
+                for info in packet_info:
+                    if isinstance(info, list):
+                        for line in info:
+                            txt_file.write(f"{line}\n")
+                    else:
+                        txt_file.write(f"{info}\n")
+                txt_file.write("\n\n")
+        txt_file_paths.append(txt_file_path)
+    return txt_file_paths
 
 
 if __name__ == "__main__":
-    pacp_path="./apollo_eth0_sample_24.pcap"
-    session_id="testsession1234"
+    pacp_path="./data/apollo_eth0_sample_94.pcap"
+    session_id="testsession_94"
     packets = load_pcap(pacp_path)
     print(packets[0])
-    print(split_pcap_to_csv(packets, session_id))
+    print(split_pcap_to_txt(packets, session_id))
+    print(split_pcap_to_txt(packets, session_id, summary_mode=True))
+    # print(split_pcap_to_json(packets, session_id, num_files=5))
 

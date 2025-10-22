@@ -4,13 +4,13 @@ import os
 import hashlib
 import time
 from authen import check_uuid
-from convertor import load_pcap, split_pcap_to_csv, split_pcap_to_json
-from openai_helper import upload_files_to_vector_store, chat_with_vector_store, cleanup_files
+from convertor import load_pcap, split_pcap_to_txt
+from openai_helper import VectorAI,cleanup_files
 from streamlit_javascript import st_javascript
 from streamlit_cookies_controller import CookieController
 
 # 从secrets或默认值获取应用配置
-app_title = st.secrets.get("app", {}).get("app_title", "9137网络数据包分析助手")
+app_title = st.secrets.get("app", {}).get("app_title", "Super 9137")
 st.set_page_config(page_title=app_title, page_icon="🛡️", layout="wide")
 
 # 初始化Cookie控制器
@@ -231,10 +231,12 @@ def auth_page():
         show_mobile_redirect()
         return
 
-    st.title("🛡️ 9137 超级AI")
+    st.title("🛡️ 9137 超级AI Pro V2")
     # 添加一些解释
     st.markdown("""
-    你不再需要理解DHCP, TCP, STMP等复杂的概念, 只需要在这里上传在9137中提供的PCAP文件, 你就可以让这里最聪明的ChatGPT 5理解所有的数据包内容，帮你分析任何问题!""")
+    你不再需要理解DHCP, TCP, STMP等复杂的概念, 只需要在这里上传在9137中提供的PCAP文件, 你就可以让这里最聪明的ChatGPT 5理解所有的数据包内容，帮你分析任何问题!
+    目前已经针对9137考试真题进行特别优化，帮助你快速通过考试！
+                """)
 
     # 检查试用状态
     trial_status = check_trial_status()
@@ -277,7 +279,6 @@ def auth_page():
 
                 # 标记试用已使用
                 mark_trial_used()
-
                 st.success("🎉 开始试用！")
                 st.rerun()
         else:
@@ -303,6 +304,7 @@ def auth_page():
         st.markdown("🛒 [备用链接](https://m.tb.cn/h.SQaDNQK?tk=W5Rnf2Rra1t)")
 
 def upload_page():
+    
     # 检查移动设备
     if not st.session_state.mobile_acknowledged and is_mobile_device():
         show_mobile_redirect()
@@ -312,7 +314,7 @@ def upload_page():
 
     # 显示当前状态
     if is_trial_mode():
-        st.info("🎁 试用模式 - 文件大小限制50MB，对话次数限制2")
+        st.info("🎁 试用模式 - 对话次数限制2")
         st.markdown(f"**试用ID:** `{st.session_state.session_id[:8]}...`")
     else:
         st.markdown(f"**当前激活码:** `{st.session_state.session_id[:8]}...`")
@@ -320,9 +322,9 @@ def upload_page():
     # 文件上传组件
     if is_trial_mode():
         uploaded_file = st.file_uploader(
-            "选择PCAP文件 (试用版限制50MB)",
+            "选择PCAP文件",
             type=['pcap', 'pcapng'],
-            help="试用版文件大小限制为50MB，升级可享受无限制上传"
+            help="文件大小限制为50MB，升级可享受无限制上传"
         )
     else:
         uploaded_file = st.file_uploader("选择PCAP文件", type=['pcap', 'pcapng'])
@@ -354,15 +356,19 @@ def upload_page():
                 if not st.session_state.files_uploaded:
                     if st.button("🚀 处理文件并上传到AI", type="primary"):
                         with st.spinner("正在生成"):
-                            csv_file = split_pcap_to_csv(packets, st.session_state.session_id)
-                            json_files = split_pcap_to_json(packets, st.session_state.session_id)
+                            simple_txt_files = split_pcap_to_txt(packets, st.session_state.session_id, summary_mode=True)
+                            all_txt_files = split_pcap_to_txt(packets, st.session_state.session_id, txt_split_num=5)
 
-                            with open(csv_file, 'r', encoding='utf-8') as f:
+                            with open(simple_txt_files[0], 'r', encoding='utf-8') as f:
                                 st.session_state.csv_content = f.read()
 
                         with st.spinner("正在上传"):
                             try:
-                                vector_store_id = upload_files_to_vector_store(json_files, st.session_state.session_id)
+                                st.session_state.vector_ai = VectorAI(st.session_state.session_id)
+                                vector_store_id = st.session_state.vector_ai.init_file(
+                                        summary_file_path=simple_txt_files[0],
+                                        upload_file_paths=all_txt_files
+                                    )
                                 if vector_store_id:
                                     st.session_state.vector_store_id = vector_store_id
                                     st.session_state.files_uploaded = True
@@ -370,7 +376,7 @@ def upload_page():
                                     save_vector_store_id(vector_store_id)
                                     st.success(f"✅ 文件处理完成！Vector Store ID: {vector_store_id[:8]}...")
 
-                                    cleanup_files(json_files + [csv_file])
+                                    cleanup_files(all_txt_files + simple_txt_files)
                                 else:
                                     st.error("❌ Vector Store创建失败")
                             except Exception as e:
@@ -537,11 +543,7 @@ def chat_page():
             with st.chat_message("assistant"):
                 try:
                     with st.spinner("正在分析数据包..."):
-                        reply = chat_with_vector_store(
-                            messages=st.session_state.messages,
-                            vector_store_id=st.session_state.vector_store_id,
-                            csv_content=st.session_state.csv_content
-                        )
+                        reply = st.session_state.vector_ai.chat(st.session_state.messages)
                     st.markdown(reply)
                     st.session_state.messages.append({"role": "assistant", "content": reply})
 
