@@ -206,11 +206,12 @@ class VectorAI():
         system_prompt = f"""你是一个专业的网络安全专家，专门分析PCAP数据包文件。
 
         ## 你的任务
-        1. 你需要明确网络中的所有主机和它们的IP地址及MAC地址. 并且输出给用户进行确认. 
+        1. 你需要明确网络中的可以明确的主机名称和它们的IP地址及MAC地址, 尤其是Hera, Zeus, Apollo. 并且输出给用户进行确认. 
         2. 网络中包含多个web服务器, 你需要分别明确他们的IP地址和域名，并且输出给用户进行确认.
         3. 分析网络数据包并回答用户的问题, 如果你不是100%确定, 请给用户一个数据包范围, 让他使用wireshark进行确认.
         4. 如果用户询问某个具体数据包的内容，你需要准确定位到该数据包，如果你没有查阅到相关信息, 请告诉我用户如何用wireshark查阅.
         5. 请特别注意: 网络包中包含针对三个web网页的几乎相同的访问内容, 如果用户问到http相关的内容, 请严格分辨他们. 
+        6. 你可以忽略所有ipv6相关的内容
 
         ## 数据包摘要
         {txt_content}
@@ -284,10 +285,46 @@ def cleanup_files(file_paths):
         except Exception as e:
             print(f"✗ 删除文件失败 {file_path}: {str(e)}")
 
+def delete_all_vector_stores(client):
+    print("正在列出所有 vector store...")
+    stores = client.vector_stores.list()
+
+    if not stores.data:
+        print("没有发现任何 vector store。")
+        return
+
+    for vs in stores.data:
+        vs_id = vs.id
+        vs_name = vs.name or "(未命名)"
+        print(f"\n正在处理 Vector Store: {vs_name} ({vs_id})")
+
+        # 先删除文件
+        try:
+            files = client.vector_stores.files.list(vector_store_id=vs_id)
+            for f in files.data:
+                print(f"  删除文件: {f.id}")
+                client.vector_stores.files.delete(
+                    vector_store_id=vs_id,
+                    file_id=f.id
+                )
+        except Exception as e:
+            print(f"  删除文件时出错: {e}")
+
+        # 删除 vector store
+        try:
+            print(f"  删除 Vector Store: {vs_name}")
+            client.vector_stores.delete(vector_store_id=vs_id)
+        except Exception as e:
+            print(f"  删除 Vector Store 时出错: {e}")
+
+    print("\n✅ 所有 vector store 已删除完成。")
+
 if __name__ == "__main__":
     ai = VectorAI(session_id="testsession_94")
-    ai.init_file_directly("data/testsession_94_summary.txt", vector_store_id="vs_68f9170a0d008191a9132e4f4437e425")
-    # ai.init_file(summary_file_path="data/testsession_94_summary.txt",
-    #          upload_file_paths=["data/testsession_94_part1.txt", "data/testsession_94_part2.txt"],)
-    print(ai.chat(user_input="请帮我分析一下这个PCAP文件中的主要通信协议有哪些？"))
-    print(ai.chat(user_input="你确定吗"))
+    delete_all_vector_stores(ai.client)
+    
+    # ai.init_file_directly("data/testsession_94_summary.txt", vector_store_id="vs_68f9170a0d008191a9132e4f4437e425")
+    # # ai.init_file(summary_file_path="data/testsession_94_summary.txt",
+    # #          upload_file_paths=["data/testsession_94_part1.txt", "data/testsession_94_part2.txt"],)
+    # print(ai.chat(user_input="请帮我分析一下这个PCAP文件中的主要通信协议有哪些？"))
+    # print(ai.chat(user_input="你确定吗"))

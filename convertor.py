@@ -70,7 +70,7 @@ def layer_simple_detector(packet):
 
     return packet_info
 
-def split_pcap_to_txt(packets, session_id, txt_split_num=5, summary_mode=False):
+def split_pcap_to_txt(packets, session_id, txt_split_num=10, summary_mode=False):
     """load every packets, using layer_detector, and split them into several txt files"""
     if summary_mode:
         txt_split_num = 1

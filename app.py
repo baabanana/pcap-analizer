@@ -231,11 +231,11 @@ def auth_page():
         show_mobile_redirect()
         return
 
-    st.title("🛡️ 9137 超级AI Pro V2")
+    st.title("🛡️ 9137 超级AI 超级升级优化版 V2")
     # 添加一些解释
     st.markdown("""
     你不再需要理解DHCP, TCP, STMP等复杂的概念, 只需要在这里上传在9137中提供的PCAP文件, 你就可以让这里最聪明的ChatGPT 5理解所有的数据包内容，帮你分析任何问题!
-    目前已经针对9137考试真题进行特别优化，帮助你快速通过考试！
+    目前已经针对9137考试真题进行特别优化，他会基于题目数据, 先帮你分析ip和mac, 然后辨别特定的网站路由. 帮助你快速通过考试！
                 """)
 
     # 检查试用状态
@@ -357,7 +357,7 @@ def upload_page():
                     if st.button("🚀 处理文件并上传到AI", type="primary"):
                         with st.spinner("正在生成"):
                             simple_txt_files = split_pcap_to_txt(packets, st.session_state.session_id, summary_mode=True)
-                            all_txt_files = split_pcap_to_txt(packets, st.session_state.session_id, txt_split_num=5)
+                            all_txt_files = split_pcap_to_txt(packets, st.session_state.session_id, txt_split_num=10)
 
                             with open(simple_txt_files[0], 'r', encoding='utf-8') as f:
                                 st.session_state.csv_content = f.read()
@@ -464,7 +464,7 @@ def chat_page():
                 st.rerun()
         return
 
-    st.title("💬 PCAP分析对话")
+    st.title("💬 PCAP分析对话 Pro V2升级版")
 
     # 显示当前状态
     if is_trial_mode():
@@ -543,7 +543,7 @@ def chat_page():
             with st.chat_message("assistant"):
                 try:
                     with st.spinner("正在分析数据包..."):
-                        reply = st.session_state.vector_ai.chat(st.session_state.messages)
+                        reply = st.session_state.vector_ai.chat(prompt)
                     st.markdown(reply)
                     st.session_state.messages.append({"role": "assistant", "content": reply})
 
