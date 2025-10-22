@@ -321,10 +321,10 @@ def delete_all_vector_stores(client):
 
 if __name__ == "__main__":
     ai = VectorAI(session_id="testsession_94")
-    delete_all_vector_stores(ai.client)
+    # delete_all_vector_stores(ai.client)
     
     # ai.init_file_directly("data/testsession_94_summary.txt", vector_store_id="vs_68f9170a0d008191a9132e4f4437e425")
-    # # ai.init_file(summary_file_path="data/testsession_94_summary.txt",
-    # #          upload_file_paths=["data/testsession_94_part1.txt", "data/testsession_94_part2.txt"],)
-    # print(ai.chat(user_input="请帮我分析一下这个PCAP文件中的主要通信协议有哪些？"))
-    # print(ai.chat(user_input="你确定吗"))
+    ai.init_file(summary_file_path="data/testsession_94_summary.txt",
+             upload_file_paths=["data/testsession_94_part1.txt", "data/testsession_94_part2.txt"],)
+    print(ai.chat(user_input="请帮我分析一下这个PCAP文件中的主要通信协议有哪些？"))
+    print(ai.chat(user_input="你确定吗"))

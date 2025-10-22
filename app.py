@@ -362,7 +362,7 @@ def upload_page():
                             with open(simple_txt_files[0], 'r', encoding='utf-8') as f:
                                 st.session_state.csv_content = f.read()
 
-                        with st.spinner("正在上传"):
+                        with st.spinner("正在上传 最近OpenAI服务器有点慢, 请耐心等待..."):
                             try:
                                 st.session_state.vector_ai = VectorAI(st.session_state.session_id)
                                 vector_store_id = st.session_state.vector_ai.init_file(
@@ -542,7 +542,7 @@ def chat_page():
 
             with st.chat_message("assistant"):
                 try:
-                    with st.spinner("正在分析数据包..."):
+                    with st.spinner("正在分析数据包... 因为包内容较大, 可能需要一些时间，请耐心等待..."):
                         reply = st.session_state.vector_ai.chat(prompt)
                     st.markdown(reply)
                     st.session_state.messages.append({"role": "assistant", "content": reply})
